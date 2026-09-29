@@ -1,0 +1,13 @@
+# CodebaseRAG Dependencies
+# This file is built incrementally as components are added
+
+# Environment and configuration
+python-dotenv==1.0.0
+
+# NOTE: Dependencies for future components will be added progressively:
+# - Day 2: No new dependencies (uses numpy/standard library)
+# - Day 3: NumPy (already implicit), Pandas (if needed)
+# - Day 4: sentence-transformers, torch
+# - Day 5: faiss-cpu (or faiss-gpu)
+# - Day 6: google-generativeai, langchain
+# - Day 7: fastapi, uvicorn, streamlit
