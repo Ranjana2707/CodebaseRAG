@@ -1,0 +1,35 @@
+"""Manual ingestion testing script for developers."""
+
+from __future__ import annotations
+
+import argparse
+import logging
+
+from app.ingestion.repository_loader import RepositoryLoader
+
+logging.basicConfig(level=logging.INFO, format="%(levelname)s:%(message)s")
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description="Load and summarize a local repository.")
+    parser.add_argument("repository_path", help="Path to a local repository to ingest.")
+    args = parser.parse_args()
+
+    loader = RepositoryLoader()
+    documents = loader.load(args.repository_path)
+
+    print("=" * 60)
+    print(f"Repository: {args.repository_path}")
+    print(f"Files included: {len(documents)}")
+
+    for doc in documents[:10]:
+        print(f"- {doc.path} [{doc.file_type}] ({doc.size_bytes} bytes)")
+
+    if len(documents) > 10:
+        print(f"... and {len(documents) - 10} more files")
+
+    print("=" * 60)
+
+
+if __name__ == "__main__":
+    main()
